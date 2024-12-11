@@ -49,19 +49,24 @@ docker-compose up -d
 docker exec -it laravel_app /bin/sh -c "cd /var/www/html && composer install"
 ```
 
-### 3. Prueba
+### 3. Ejecutar migración base de datos
+```bash
+docker exec -it laravel_app /bin/sh -c "cd /var/www/html && php artisan migrate --seed"
+```
+
+### 4. Prueba
 Los servicios API se encuentran disponibles en la siguiente URL:
 ```
 http://localhost:9215
 ```
 
-### 4. Documentación de la API
+### 5. Documentación de la API
 
 La documentación SWAGGER de la API se encuentra disponible en la siguiente URL:
 [http://localhost:9215/swagger/index.html](http://localhost:9215/swagger/index.html).
 
 
-### 5. Ejecutar pruebas unitarias
+### 6. Ejecutar pruebas unitarias
 
 ```bash
 docker exec -it laravel_app /bin/sh -c "cd /var/www/html && php artisan test"
