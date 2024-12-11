@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ReservationLog extends Model
 {
-    protected $table = 'reservation_log';
+    protected $table = 'reservation_logs';
 
     /**
      * Override the delete method to add custom logic.

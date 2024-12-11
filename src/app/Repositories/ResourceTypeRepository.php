@@ -11,14 +11,22 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface
         return ResourceType::where('active',true)->get();
     }
 
-    public function create(array $data)
+    public function create(array $data): ResourceType
     {
-        return ResourceType::create($data);
+        $resourceType = new ResourceType();
+        $resourceType->name = $data['name'];
+        $resourceType->save();
+
+        return $resourceType;
     }
 
     public function update(array $data, $id)
     {
-        return ResourceType::find($id)->update($data);
+        $resourceType=ResourceType::find($id);
+        $resourceType->name = $data['name'];
+        $resourceType->save();
+
+        return $resourceType;
     }
 
     public function delete($id)

@@ -9,7 +9,7 @@ class ResourceTypeSpace extends Model
 {
     use HasFactory;
 
-    protected $table = 'resource_type_space';
+    protected $table = 'resource_type_spaces';
 
     /**
      * Override the delete method to add custom logic.

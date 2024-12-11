@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Resource;
 use App\Models\ResourceType;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ResourceRepository implements ResourceRepositoryInterface
 {
@@ -15,12 +16,12 @@ class ResourceRepository implements ResourceRepositoryInterface
     public function create(array $data)
     {
         $resource = new Resource();
-        $resource->resource_type_id = $data->resource_type_id;
-        $resource->name = $data->name;
-        $resource->code = $data->code;
-        $resource->detail = $data->detail;
-        $resource->availability_schedule = json_encode($data->availability_schedule);
-        $resource->recommendations = $data->recommendations;
+        $resource->resource_type_id = $data['resource_type_id'];
+        $resource->name = $data['name'];
+        $resource->code = $data['code'];
+        $resource->detail = $data['detail'];
+        $resource->availability_schedule = json_encode($data['availability_schedule']);
+        $resource->recommendations = $data['recommendations'];
         $resource->save();
 
         return $resource;
@@ -30,12 +31,17 @@ class ResourceRepository implements ResourceRepositoryInterface
     {
 
         $resource = Resource::find($id);
-        $resource->resource_type_id = $data->resource_type_id;
-        $resource->name = $data->name;
-        $resource->code = $data->code;
-        $resource->detail = $data->detail;
-        $resource->availability_schedule = json_encode($data->availability_schedule);
-        $resource->recommendations = $data->recommendations;
+
+        if (!$resource) {
+            throw new ModelNotFoundException("Resource not found");
+        }
+
+        $resource->resource_type_id = $data['resource_type_id'];
+        $resource->name = $data['name'];
+        $resource->code = $data['code'];
+        $resource->detail = $data['detail'];
+        $resource->availability_schedule = json_encode($data['availability_schedule']);
+        $resource->recommendations = $data['recommendations'];
         $resource->save();
 
         return $resource;

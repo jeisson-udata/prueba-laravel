@@ -9,7 +9,7 @@ class Resource extends Model
 {
     use HasFactory;
 
-    protected $table = 'resource';
+    protected $table = 'resources';
 
     /**
      * Override the delete method to add custom logic.

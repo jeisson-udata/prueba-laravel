@@ -74,9 +74,9 @@ class ReservationController extends Controller
      *     )
      * )
      */
-    public function show(Reservation $reservation): Reservation
+    public function show($id): Reservation
     {
-        return $this->reservationService->find($reservation->id);
+        return $this->reservationService->find($id);
     }
 
 
@@ -100,7 +100,7 @@ class ReservationController extends Controller
      *     )
      * )
      */
-    public function update(Request $request, Reservation $reservation): Reservation{
+    public function update(Request $request, $id): Reservation{
         $data=$request->validate([
             'resource_id' => 'required|integer',
             'user_id' => 'required|integer',
@@ -108,7 +108,7 @@ class ReservationController extends Controller
             'end' => 'required|date',
         ]);
 
-        return $this->reservationService->update($reservation->id, $data);
+        return $this->reservationService->update($id, $data);
     }
 
     /**
@@ -127,9 +127,9 @@ class ReservationController extends Controller
      *     )
      * )
      */
-    public function destroy(Reservation $reservation): \Illuminate\Http\JsonResponse
+    public function destroy($id): \Illuminate\Http\JsonResponse
     {
-        return  $this->reservationService->cancel($reservation->id);
+        return  $this->reservationService->cancel($id);
     }
 
     /**
@@ -155,12 +155,12 @@ class ReservationController extends Controller
      *     )
      * )
      */
-    public function start(Request $request,Reservation $reservation): Reservation
+    public function start(Request $request,$id): Reservation
     {
         $data=$request->validate([
             'user_checker_id' => 'required|integer',
         ]);
-        return $this->reservationService->started($reservation->id, $data->user_checker_id);
+        return $this->reservationService->started($id, $data['user_checker_id']);
     }
 
     /**
@@ -188,14 +188,14 @@ class ReservationController extends Controller
      *     )
      * )
      */
-    public function complete(Request $request,Reservation $reservation): Reservation
+    public function complete(Request $request,$id): Reservation
     {
         $data=$request->validate([
             'user_checker_id' => 'required|integer',
             'observations' => 'required|string',
             'all_correct' => 'required|boolean',
         ]);
-        return $this->reservationService->completed($reservation->id,$data->observations,$data->all_correct, $data->user_checker_id);
+        return $this->reservationService->completed($id,$data['observations'],$data['all_correct'], $data['user_checker_id']);
     }
 
 

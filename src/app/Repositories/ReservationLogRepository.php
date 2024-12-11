@@ -19,10 +19,10 @@ class ReservationLogRepository implements ReservationLogRepositoryInterface
     public function create(array $data)
     {
         $reservationLog = new ReservationLog();
-        $reservationLog->reservation_id = $data->reservation_id;
-        $reservationLog->user_checker_id = $data->user_checker_id;
-        $reservationLog->status = $data->status;
-        $reservationLog->observations = $data->observations;
+        $reservationLog->reservation_id = $data['reservation_id'];
+        $reservationLog->user_checker_id = $data['user_checker_id'];
+        $reservationLog->status = $data['status'];
+        $reservationLog->observations = $data['observations'];
 
         $reservationLog->save();
 

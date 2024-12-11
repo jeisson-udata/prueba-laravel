@@ -15,10 +15,10 @@ class ReservationRepository implements ReservationRepositoryInterface
     {
 
         $reservation = new Reservation();
-        $reservation->resource_id = $data->resource_id;
-        $reservation->user_id = $data->user_id;
-        $reservation->start_at = $data->start_at;
-        $reservation->end_at = $data->end_at;
+        $reservation->resource_id = $data['resource_id'];
+        $reservation->user_id = $data['user_id'];
+        $reservation->start_at = $data['start_at'];
+        $reservation->end_at = $data['end_at'];
 
         $reservation->save();
 
@@ -29,10 +29,10 @@ class ReservationRepository implements ReservationRepositoryInterface
     public function update(array $data, $id)
     {
         $reservation = Reservation::find($id);
-        $reservation->resource_id = $data->resource_id;
-        $reservation->user_id = $data->user_id;
-        $reservation->start_at = $data->start_at;
-        $reservation->end_at = $data->end_at;
+        $reservation->resource_id = $data['resource_id'];
+        $reservation->user_id = $data['user_id'];
+        $reservation->start_at = $data['start_at'];
+        $reservation->end_at = $data['end_at'];
 
         $reservation->save();
 

@@ -9,7 +9,7 @@ class ResourceTypeEquipment extends Model
 {
     use HasFactory;
 
-    protected $table = 'resource_type_equipment';
+    protected $table = 'resource_type_equipments';
 
     /**
      * Override the delete method to add custom logic.

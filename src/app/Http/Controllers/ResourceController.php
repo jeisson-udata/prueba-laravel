@@ -49,7 +49,16 @@ class ResourceController extends Controller
      */
     public function store(Request $request): Resource
     {
-       return $this->resourceService->create($request->all());
+        $data = $request->validate([
+            'name' => 'required',
+            'resource_type_id' => 'required|numeric',
+            'code' => 'required',
+            'detail' => 'required',
+            'availability_schedule' => 'required',
+            'recommendations' => 'required',
+        ]);
+
+       return $this->resourceService->create($data);
     }
 
     /**
@@ -68,9 +77,9 @@ class ResourceController extends Controller
      *     )
      * )
      */
-    public function show(Resource $resource): Resource
+    public function show($id): Resource
     {
-        return $this->resourceService->find($resource->id);
+        return $this->resourceService->find($id);
     }
 
     /**
@@ -93,9 +102,18 @@ class ResourceController extends Controller
      *     )
      * )
      */
-    public function update(Request $request, Resource $resource): Resource
+    public function update(Request $request, $id): Resource
     {
-        return $this->resourceService->update($request->all(), $resource->id);
+        $data = $request->validate([
+            'name' => 'required',
+            'resource_type_id' => 'required|numeric',
+            'code' => 'required',
+            'detail' => 'required',
+            'availability_schedule' => 'required',
+            'recommendations' => 'required',
+        ]);
+
+        return $this->resourceService->update($data,  $id);
     }
 
     /**
@@ -114,9 +132,9 @@ class ResourceController extends Controller
      *     )
      * )
      */
-    public function destroy(Resource $resource): \Illuminate\Http\JsonResponse
+    public function destroy($id): \Illuminate\Http\JsonResponse
     {
-        $resource->delete();
+        $this->resourceService->delete($id);
         return response()->json([], 204);
     }
 

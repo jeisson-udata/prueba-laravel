@@ -70,9 +70,9 @@ class ResourceTypeController extends Controller
      *     )
      * )
      */
-    public function show(ResourceType $resourceType): ResourceType
+    public function show($id): ResourceType
     {
-        return $resourceType;
+        return $this->resourceTypeService->find($id);
     }
 
     /**
@@ -95,13 +95,13 @@ class ResourceTypeController extends Controller
      *     )
      * )
      */
-    public function update(Request $request,ResourceType $resourceType): ResourceType
+    public function update(Request $request, $id): ResourceType
     {
         $data = $request->validate([
             'name' => 'required',
         ]);
 
-        return $this->resourceTypeService->update($data, $resourceType->id);
+        return $this->resourceTypeService->update($data, $id);
     }
 
     /**
@@ -120,9 +120,9 @@ class ResourceTypeController extends Controller
      *     )
      * )
      */
-    public function destroy(ResourceType $resourceType): \Illuminate\Http\JsonResponse
+    public function destroy($id): \Illuminate\Http\JsonResponse
     {
-        $this->resourceTypeService->delete($resourceType);
+        $this->resourceTypeService->delete($id);
         return response()->json([], 204);
     }
 
