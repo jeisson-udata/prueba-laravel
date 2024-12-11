@@ -1,3 +1,49 @@
+<p align="center"><a href="/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1039/1039328.png" width="100" alt="Prueba técnica"></a></p>
+
+# PRUEBA TÉCNICA BACKEND
+
+
+## Arquitectura del proyecto LARAVEL
+
+
+Laravel está construido sobre una arquitectura MVC (Modelo-Vista-Controlador), lo que facilita una separación clara entre la lógica de la aplicación y la interfaz de usuario. Esta estructura es eficiente y ayuda a que el código sea más fácil de mantener y testear
+
+<img src="https://dam.org.es/wp-content/uploads/2021/04/arquitectura.png" alt="arquitectura" />
+
+### Modelo de base de datos
+A continuación se muestra el modelo de base de datos de la aplicación:
+
+<img src="./documentation/db-model-diagram.drawio.png" alt="db-model-diagram" />
+
+## Run Docker
+
+> **Nota:**
+>
+> Asegúrate de que los puertos **9215** y **3306** estén libres en la máquina de ejecución antes de iniciar los contenedores Docker.
+
+
+### 1. Ejecutar Docker
+```bash
+docker-compose up -d
+```
+
+### 2. Instalar Composer
+```bash
+docker exec -it laravel_app /bin/sh -c "cd /var/www/html && composer install"
+```
+
+### 3. Prueba
+Los servicios API se encuentran disponibles en la siguiente URL:
+```
+http://localhost:9215
+```
+
+### 3. Ejecutar pruebas unitarias
+
+```bash
+docker exec -it laravel_app /bin/sh -c "cd /var/www/html && php artisan test"
+```
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
