@@ -180,7 +180,7 @@ class ResourceController extends Controller
         return $this->resourceService->allAvailable();
     }
     /**
-     * @OA\Post(
+     * @OA\Get(
      *     path="/api/resource/{resource}/reservation",
      *     summary="Get reservations by resource",
      *     @OA\Parameter(
@@ -195,9 +195,9 @@ class ResourceController extends Controller
      *     )
      * )
      */
-    public function reservations(Resource $resource): \Illuminate\Database\Eloquent\Collection
+    public function reservations($id): \Illuminate\Database\Eloquent\Collection
     {
-        return $this->reservationService->allByResource($resource->id);
+        return $this->reservationService->allByResource($id);
     }
 
     /**

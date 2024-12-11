@@ -13,14 +13,14 @@ class ResourceControllerTest extends TestCase
 
     use RefreshDatabase,WithoutMiddleware;
 
-    /** @test */
+     /** @test */
     public function it_can_list_all_resources()
     {
         // Arrange: Create some resources types
-        ResourceType::factory()->count(10)->create();
+        $resourceType= ResourceType::factory()->create();
 
         // Arrange: Create some resources
-        Resource::factory()->count(3)->create();
+        Resource::factory()->count(3)->create(['resource_type_id' => $resourceType->id]);
 
         // Act: Make a GET request to the index route
         $response = $this->getJson('/api/resource');
@@ -30,7 +30,7 @@ class ResourceControllerTest extends TestCase
             ->assertJsonCount(3);
     }
 
-    /** @test */
+     /** @test */
     public function it_can_create_a_resource()
     {
         $resourceType = ResourceType::factory()->create();
@@ -77,7 +77,7 @@ class ResourceControllerTest extends TestCase
         $this->assertDatabaseHas('resources', ['name' => 'TEST']);
     }
 
-    /** @test */
+     /** @test */
     public function it_can_show_a_resource()
     {
         // Arrange: Create some resources types
@@ -94,7 +94,7 @@ class ResourceControllerTest extends TestCase
             ->assertJsonFragment(['name' => $resource->name]);
     }
 
-    /** @test */
+     /** @test */
     public function it_can_update_a_resource()
     {
         $resourceType = ResourceType::factory()->create();
@@ -143,7 +143,7 @@ class ResourceControllerTest extends TestCase
         $this->assertDatabaseHas('resources', ['id' => $resource->id, 'name' => 'TEST']);
     }
 
-    /** @test */
+     /** @test */
     public function it_can_delete_a_resource()
     {
         $resourceType = ResourceType::factory()->create();

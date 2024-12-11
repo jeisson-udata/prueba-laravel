@@ -50,8 +50,8 @@ class ReservationController extends Controller
         $data=$request->validate([
             'resource_id' => 'required|integer',
             'user_id' => 'required|integer',
-            'start' => 'required|date',
-            'end' => 'required|date',
+            'start_at' => 'required|date',
+            'end_at' => 'required|date',
         ]);
 
 
@@ -104,11 +104,11 @@ class ReservationController extends Controller
         $data=$request->validate([
             'resource_id' => 'required|integer',
             'user_id' => 'required|integer',
-            'start' => 'required|date',
-            'end' => 'required|date',
+            'start_at' => 'required|date',
+            'end_at' => 'required|date',
         ]);
 
-        return $this->reservationService->update($id, $data);
+        return $this->reservationService->update($data,$id);
     }
 
     /**
@@ -129,7 +129,8 @@ class ReservationController extends Controller
      */
     public function destroy($id): \Illuminate\Http\JsonResponse
     {
-        return  $this->reservationService->cancel($id);
+        $this->reservationService->cancel($id);
+        return response()->json(null, 204);
     }
 
     /**

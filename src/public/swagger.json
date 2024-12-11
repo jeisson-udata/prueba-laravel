@@ -1,0 +1,488 @@
+{
+    "openapi": "3.0.0",
+    "paths": {
+        "/api/reservation": {
+            "get": {
+                "summary": "Get list of reservations",
+                "operationId": "73b3ac43812188969fb900ed537f7a99",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a new reservation",
+                "operationId": "92d1b0ffea23bb79be4bcfba81dae7b6",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Reservation"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Reservation created"
+                    }
+                }
+            }
+        },
+        "/api/reservation/{reservation}": {
+            "get": {
+                "summary": "Get a reservation by ID",
+                "operationId": "bfbf69ed48da649bf8b6746c63c582c3",
+                "parameters": [
+                    {
+                        "name": "reservation",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update a reservation",
+                "operationId": "d29f8fecf25f4e3cf0c4f36f1e9f3d93",
+                "parameters": [
+                    {
+                        "name": "reservation",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Reservation"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Cancel a reservation",
+                "operationId": "84bec1145cce8b126c859b1f56d8e184",
+                "parameters": [
+                    {
+                        "name": "reservation",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/api/reservation/{reservation}/start": {
+            "put": {
+                "summary": "Start a reservation",
+                "operationId": "90165aab47da88c81aa31afd33639712",
+                "parameters": [
+                    {
+                        "name": "reservation",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "user_checker_id"
+                                ],
+                                "properties": {
+                                    "user_checker_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/api/reservation/{reservation}/complete": {
+            "put": {
+                "summary": "Complete a reservation",
+                "operationId": "6b2caea6e2a696ba5167309d931f3792",
+                "parameters": [
+                    {
+                        "name": "reservation",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "user_checker_id",
+                                    "observations",
+                                    "all_correct"
+                                ],
+                                "properties": {
+                                    "user_checker_id": {
+                                        "type": "integer"
+                                    },
+                                    "observations": {
+                                        "type": "string"
+                                    },
+                                    "all_correct": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/api/resource": {
+            "get": {
+                "summary": "Get list of resources",
+                "operationId": "1ca153045f95f9a559c9f5ba6cb238a2",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a new resource",
+                "operationId": "9e8c2d17de090461e35abd383edafa68",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Resource"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Resource created"
+                    }
+                }
+            }
+        },
+        "/api/resource/{resource}": {
+            "get": {
+                "summary": "Get a resource by ID",
+                "operationId": "8e857f1839190aca6dc1dbd933a593bd",
+                "parameters": [
+                    {
+                        "name": "resource",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update a resource",
+                "operationId": "c881f5875dbf680be9a77df93c847f0b",
+                "parameters": [
+                    {
+                        "name": "resource",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Resource"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Resource updated"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a resource",
+                "operationId": "8ee353f90e704931dc83804bbc38d80d",
+                "parameters": [
+                    {
+                        "name": "resource",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Resource deleted"
+                    }
+                }
+            }
+        },
+        "/api/resource-type/{resourceType}/resource": {
+            "get": {
+                "summary": "Get resources by resource type",
+                "operationId": "c77cfc8f31ce913b06e792c137fe9362",
+                "parameters": [
+                    {
+                        "name": "resourceType",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/api/resource/{resource}/availability": {
+            "get": {
+                "summary": "Get available resources",
+                "operationId": "b6246abc8d15ae10f4c14d74c2f0f302",
+                "parameters": [
+                    {
+                        "name": "resource",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/api/resource/{resource}/reservation": {
+            "get": {
+                "summary": "Get reservations by resource",
+                "operationId": "334c92dbacb78eda03a5e1319bb3deac",
+                "parameters": [
+                    {
+                        "name": "resource",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/api/resource/{resource}/availability/start/{start_at}/minutes/{minutes}": {
+            "get": {
+                "summary": "Get available resources from a period",
+                "operationId": "d4d42888d7b24c43e3e20cd8bf5efbc1",
+                "parameters": [
+                    {
+                        "name": "resource",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "start_at",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "minutes",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/api/resource-type": {
+            "get": {
+                "summary": "Get list of resource types",
+                "operationId": "3976c5b35e62264be95dac25c5a29cf4",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a new resource type",
+                "operationId": "fe2636d515c4d0f2ed3e10ef6442fee9",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ResourceType"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Resource type created"
+                    }
+                }
+            }
+        },
+        "/api/resource-type/{resourceType}": {
+            "get": {
+                "summary": "Get a resource type by ID",
+                "operationId": "7934732977755ba218e3f21470135955",
+                "parameters": [
+                    {
+                        "name": "resourceType",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update a resource type",
+                "operationId": "e6714404e350db799dfac64fe0af802f",
+                "parameters": [
+                    {
+                        "name": "resourceType",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ResourceType"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Resource type updated"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a resource type",
+                "operationId": "efc5cdc222d53c3fdaccbd3efc7c4a08",
+                "parameters": [
+                    {
+                        "name": "resourceType",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Resource type deleted"
+                    }
+                }
+            }
+        }
+    }
+}

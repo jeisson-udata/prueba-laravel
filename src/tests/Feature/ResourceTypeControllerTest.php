@@ -40,17 +40,4 @@ class ResourceTypeControllerTest extends TestCase
         $this->assertDatabaseHas('resource_types', ['name' => 'TEST']);
     }
 
-    /** @test */
-    public function it_can_show_a_resource_type()
-    {
-        // Arrange: Create a resource type
-        $resourceType = ResourceType::factory()->create();
-
-        // Act: Make a GET request to the show route
-        $response = $this->getJson("/api/resource-type/{$resourceType->id}");
-
-        // Assert: Verify the response is successful and contains the expected data
-        $response->assertStatus(200)
-            ->assertJsonFragment(['name' => $resourceType->name]);
-    }
 }

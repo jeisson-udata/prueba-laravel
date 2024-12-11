@@ -19,6 +19,7 @@ class ReservationRepository implements ReservationRepositoryInterface
         $reservation->user_id = $data['user_id'];
         $reservation->start_at = $data['start_at'];
         $reservation->end_at = $data['end_at'];
+        $reservation->status = 'PENDING';
 
         $reservation->save();
 
@@ -53,7 +54,7 @@ class ReservationRepository implements ReservationRepositoryInterface
 
     public function allByResource($resource_id)
     {
-        return Reservation::where('active',true)->where('resource_id', $resource_id)->get();
+        return Reservation::where('active',true)->where('resource_id', $resource_id)->where('status','!=','CANCELLED')->get();
     }
 
     public function cancel($id)
@@ -91,6 +92,7 @@ class ReservationRepository implements ReservationRepositoryInterface
     {
         return Reservation::where('active',true)
             ->where('status','!=','CANCELLED')
+            ->where('status','!=','FINISHED')
             ->where('resource_id', $resource_id)
             ->where('start_at', '<=', $end_at)
             ->where('end_at', '>=', $start_at)

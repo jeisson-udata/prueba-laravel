@@ -27,7 +27,7 @@ class ReservationService
     public function create(array $data)
     {
         // check if resource is available
-        $exists=$this->reservationRepository->existsFromResourceAtPeriod($data->resource_id, $data->start_at, $data->end_at);
+        $exists=$this->reservationRepository->existsFromResourceAtPeriod($data['resource_id'], $data['start_at'], $data['end_at']);
 
         // if exists throw exception
         if($exists){
@@ -40,7 +40,7 @@ class ReservationService
         // log
         $this->reservationLogRepository->create([
             'reservation_id' => $reservation->id,
-            'user_checker_id' => $data->user_id,
+            'user_checker_id' => $data['user_id'],
             'status' => $reservation->status,
             'observations' => 'Reservation created'
         ]);
@@ -56,7 +56,7 @@ class ReservationService
         // log
         $this->reservationLogRepository->create([
             'reservation_id' => $reservation->id,
-            'user_checker_id' => $data->user_id,
+            'user_checker_id' => $data['user_id'],
             'status' => $reservation->status,
             'observations' => 'Reservation updated'
         ]);

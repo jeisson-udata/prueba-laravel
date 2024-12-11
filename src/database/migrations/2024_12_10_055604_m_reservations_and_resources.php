@@ -156,7 +156,7 @@ return new class extends Migration
             $table->dateTime('start_at');
             $table->dateTime('end_at');
             $table->string('observations')->nullable();
-            $table->boolean('all_correct');
+            $table->boolean('all_correct')->default(false);
             $table->foreignId('user_checker_id')->nullable()->constrained('users');
             $table->string('status')->default('PENDING'); // types: PENDING, APPROVED, REJECTED, CANCELLED, FINISHED, EXPIRED
             $table->boolean('active')->default(true);
@@ -203,12 +203,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resource_types');
-        Schema::dropIfExists('resources');
+        Schema::dropIfExists('reservation_logs');
+        Schema::dropIfExists('reservations');
         Schema::dropIfExists('resource_type_equipments');
         Schema::dropIfExists('resource_type_spaces');
-        Schema::dropIfExists('reservations');
-        Schema::dropIfExists('reservation_logs');
+        Schema::dropIfExists('resources');
+        Schema::dropIfExists('resource_types');
 
     }
 };
